@@ -8,6 +8,7 @@ import {DetailStockComponent} from './stock/detail-stock/detail-stock.component'
 import {StorageDemoComponent} from './storage-demo/storage-demo.component';
 import {ShoppingComponent} from './shopping/shopping.component';
 import {CommunicationComponent} from './communication/communication.component';
+import {FormulaireComponent} from './formulaires/formulaire.component';
 
 
 const routes: Route[] = [
@@ -33,10 +34,10 @@ const routes: Route[] = [
       }
     ]
   },
-  {
-    path: 'stock/:id',
-    component: DetailStockComponent
-  },
+  // {
+  //   path: 'stock/:id',
+  //   component: DetailStockComponent
+  // },
   {
     path: 'storage',
     component: StorageDemoComponent
@@ -48,6 +49,10 @@ const routes: Route[] = [
   {
     path: 'communication',
     component: CommunicationComponent
+  },
+  {
+    path: 'formulaire',
+    component: FormulaireComponent
   },
   {
     path: '**',

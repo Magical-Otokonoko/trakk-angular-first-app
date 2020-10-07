@@ -12,6 +12,7 @@ import { StorageDemoComponent } from './storage-demo/storage-demo.component';
 import {ShoppingModule} from './shopping/shopping.module';
 import { CommunicationComponent } from './communication/communication.component';
 import { ChildComponent } from './communication/child/child.component';
+import {FormulairesModule} from './formulaires/formulaires.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ChildComponent } from './communication/child/child.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormulairesModule,
     FormsModule,
     StockModule,
     ShoppingModule

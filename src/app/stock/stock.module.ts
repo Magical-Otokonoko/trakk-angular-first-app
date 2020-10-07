@@ -11,9 +11,10 @@ import {AppRoutingModule} from '../app-routing.module';
     HighLightDirective,
     DetailStockComponent
   ],
-  exports: [
-    StockComponent
-  ],
+    exports: [
+        StockComponent,
+        HighLightDirective
+    ],
   imports: [
     CommonModule,
     AppRoutingModule

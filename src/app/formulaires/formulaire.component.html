@@ -1,0 +1,16 @@
+<h3>Démo des formulaires</h3>
+<h6>Mode Forms avec [(ngModel)] : Template Driven Forms</h6>
+<!--TODO utiliser le binding d'évènement (ngSubmit) pour soumettre le formulaire-->
+<form (ngSubmit)="submit()">
+  <label for="name"> Name :
+<!--    TODO la liaison de l'input se fait via le TWO-WAY Binding [(ngModel)] -->
+<!--    TODO l'attribut name de l'input vers un objet qui reprend les données du formulaire-->
+    <input type="text" id="name" [(ngModel)]="objForm.name" name="name">
+  </label>
+  <label for="email"> Email :
+    <input type="email" id="email" [(ngModel)]="objForm.email" name="email">
+  </label>
+<!--  TODO le bouton type submit va lancer l'appel à la méthode du (ngSubmit)-->
+  <button type="submit">SOUMETTRE</button>
+</form>
+{{objForm | json}}
