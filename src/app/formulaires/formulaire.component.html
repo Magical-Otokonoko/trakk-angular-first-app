@@ -1,16 +1,47 @@
 <h3>Démo des formulaires</h3>
-<h6>Mode Forms avec [(ngModel)] : Template Driven Forms</h6>
-<!--TODO utiliser le binding d'évènement (ngSubmit) pour soumettre le formulaire-->
-<form (ngSubmit)="submit()">
-  <label for="name"> Name :
-<!--    TODO la liaison de l'input se fait via le TWO-WAY Binding [(ngModel)] -->
-<!--    TODO l'attribut name de l'input vers un objet qui reprend les données du formulaire-->
-    <input type="text" id="name" [(ngModel)]="objForm.name" name="name">
-  </label>
-  <label for="email"> Email :
-    <input type="email" id="email" [(ngModel)]="objForm.email" name="email">
-  </label>
-<!--  TODO le bouton type submit va lancer l'appel à la méthode du (ngSubmit)-->
-  <button type="submit">SOUMETTRE</button>
-</form>
-{{objForm | json}}
+<div class="form-container">
+  <div>
+    <h6>Mode Forms avec [(ngModel)] : Template Driven Forms</h6>
+    <!--TODO utiliser le binding d'évènement (ngSubmit) pour soumettre le formulaire-->
+    <form (ngSubmit)="submit()">
+      <label for="name"> Name :
+        <!--    TODO la liaison de l'input se fait via le TWO-WAY Binding [(ngModel)] -->
+        <!--    TODO l'attribut name de l'input vers un objet qui reprend les données du formulaire-->
+        <input type="text" id="name" [(ngModel)]="objForm.name" name="name" required>
+      </label>
+      <label for="email"> Email :
+        <input type="email" id="email" [(ngModel)]="objForm.email" name="email" required>
+      </label>
+      <label for="genre"> Genre :
+        <select id="genre" [(ngModel)]="objForm.genre" name="genre">
+          <option *ngFor="let g of getEnumValues()">{{g}}</option>
+        </select>
+      </label>
+      <!--  TODO le bouton type submit va lancer l'appel à la méthode du (ngSubmit)-->
+      <button type="submit">SOUMETTRE</button>
+    </form>
+    {{objForm | json}}
+  </div>
+  <div>
+    <h6>Mode Forms : Reactive Driven Forms</h6>
+<!--    TODO lier via [formGroup] la variable de mon formulaire créée via le FormBuilder d'Angular-->
+    <form [formGroup]="reactForm" (ngSubmit)="submitReactive()">
+      <label for="nameR"> Name :
+<!--        TODO : pour lier chaque input au control du formulaire, utilisation de la directive formControlName-->
+        <input type="text" id="nameR" formControlName="name">
+      </label>
+      <label for="emailR"> Email :
+        <input type="email" id="emailR" formControlName="email">
+      </label>
+      <label for="genreR"> Genre :
+        <select id="genreR" formControlName="genre">
+          <option *ngFor="let g of getEnumValues()" [value]="g">{{g}}</option>
+        </select>
+      </label>
+      <button type="submit" [disabled]="!reactForm.valid">SOUMETTRE</button>
+    </form>
+    {{reactForm.value | json}}
+    {{reactForm.valid}}
+  </div>
+</div>
+

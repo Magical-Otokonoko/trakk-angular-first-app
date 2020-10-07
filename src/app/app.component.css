@@ -11,10 +11,16 @@ ul {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  padding: 0.7em;
+  border: 1px solid #ddd;
 }
 
 a {
   text-decoration: none;
+}
+
+router-outlet {
+  padding: 0.7em;
 }
 
 /*# sourceMappingURL=app.component.css.map */
