@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-detail-stock',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailStockComponent implements OnInit {
 
-  constructor() { }
+  showId: number;
+
+  constructor(public activateRoute: ActivatedRoute) {
+
+  }
 
   ngOnInit(): void {
+    this.activateRoute.params.subscribe((params) => {
+      this.showId = Number(params.id);
+    });
   }
 
 }

@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParentComponent implements OnInit {
 
+  names: string[] = ['Greg', 'Laurent', 'Corentin'];
+
   constructor() { }
 
   ngOnInit(): void {

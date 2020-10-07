@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-item-detail',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemDetailComponent implements OnInit {
 
-  constructor() { }
+  itemId: number;
+
+  constructor(public activateRoute: ActivatedRoute) {
+
+  }
 
   ngOnInit(): void {
+    this.activateRoute.params.subscribe((params) => {
+      this.itemId = Number(params.id);
+    });
   }
 
 }

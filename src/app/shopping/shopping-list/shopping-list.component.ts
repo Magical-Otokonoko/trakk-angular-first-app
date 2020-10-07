@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+
+export const shoppingList: Item[] = [];
 
 @Component({
   selector: 'app-shopping-list',
@@ -7,9 +10,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingListComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = ['title', 'description', 'price', 'actions'];
+  dataSource: Item[];
 
-  ngOnInit(): void {
+  constructor(public router: Router) {
   }
 
+  ngOnInit(): void {
+    this.dataSource = shoppingList;
+  }
+
+  removeItem(item: Item): void {
+    shoppingList.splice(shoppingList.lastIndexOf(item), 1);
+    this.router.navigateByUrl('/shopping-list').then();
+  }
+
+  saveList(): void {
+    shoppingList.forEach(item => localStorage.setItem(item.title, JSON.stringify(item)));
+  }
+
+
+}
+
+
+export interface Item {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  stockQuantity: number;
 }
