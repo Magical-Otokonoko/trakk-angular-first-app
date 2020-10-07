@@ -10,12 +10,13 @@ export class DetailStockComponent implements OnInit {
 
   showId: number;
 
-  constructor(public activateRoute: ActivatedRoute) {
-
+  constructor(
+    public activateRoute: ActivatedRoute
+  ) {
   }
 
   ngOnInit(): void {
-    this.activateRoute.params.subscribe((params) => {
+    this.activateRoute.params.subscribe(params => {
       this.showId = Number(params.id);
     });
   }

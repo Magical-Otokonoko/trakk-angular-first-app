@@ -7,8 +7,10 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HelloWorldComponent implements OnInit {
 
-  variable = 'Affichage de ma donnée depuis le .ts';
-  champs: string;
+  variable = 'Affichage de ma donnée depuis le .TS';
+
+  champ: string;
+
   color: string;
 
   incrementation = 0;
@@ -20,13 +22,18 @@ export class HelloWorldComponent implements OnInit {
   }
 
   affichage(): string {
-    return 'Affiche moi!';
+    return 'Affiche-moi !!!';
   }
 
-  afficheDiv(myDiv: HTMLDivElement): string {
-    return myDiv.innerHTML;
+  afficheDiv(div: HTMLDivElement): string {
+    return div.innerHTML;
   }
+
   incr(): void {
     this.incrementation++;
+  }
+
+  changeValue(select: HTMLSelectElement): void {
+    console.log(select.value);
   }
 }

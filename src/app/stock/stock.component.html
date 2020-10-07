@@ -1,0 +1,26 @@
+<h1 >Stock</h1>
+<table>
+  <thead>
+  <th appHighLight>Title</th>
+  <th [appHighLight]="'lightblue'">Description</th>
+  <th>Price</th>
+  <th>Quantity</th>
+  <th>Creation Date</th>
+  <th></th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let p of stock" >
+    <ng-container *ngIf="p.stockQuantity > 0">
+      <td><a routerLink="/stock/{{p.id}}">{{p.title}}</a></td>
+      <td>{{p.description}}</td>
+      <td [ngClass]="{cheap: p.price < 5}">{{p.price}} €</td>
+      <td>{{p.stockQuantity}}</td>
+      <td>{{p.creationDate}}</td>
+      <td>
+        <button (click)="buy(p)">BUY</button>
+      </td>
+    </ng-container>
+  </tr>
+  </tbody>
+</table>
+<router-outlet></router-outlet>

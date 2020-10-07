@@ -1,1 +1,12 @@
-<p>Enfant : Mon nom est {{name}}</p>
+<h3>Enfant</h3>
+<p>Mon nom est {{name}}</p>
+<p>Je vote</p>
+<div style="width: 40%;display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+  <button (click)="votePour()">POUR</button>
+  <button (click)="voteContre()">CONTRE</button>
+</div>
+<p>Je vote via service</p>
+<div style="width: 40%;display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+  <button (click)="service.voterPour()">POUR</button>
+  <button (click)="service.voterContre()">CONTRE</button>
+</div>

@@ -1,0 +1,87 @@
+<h2>Shopping</h2>
+<div style="display: flex; flex-direction: row; justify-content: space-between;">
+  <div style="width: 48%">
+    <h4>Category</h4>
+    <div style="border: 1px solid darkgreen; padding: 5px;">
+      <label for="cat">New Category</label>
+      <input type="text" id="cat" #newCat>
+      <button (click)="addCat(newCat)">ADD CATEGORY</button>
+    </div>
+    <table>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+      </tr>
+      <tr *ngFor="let c of catList">
+        <td>{{c.id}}</td>
+        <td>{{c.name}}</td>
+      </tr>
+    </table>
+  </div>
+  <div style="width: 48%">
+    <h4>Product</h4>
+    <div style="border: 1px solid darkblue; padding: 5px;">
+      <label for="prodname">Product Name</label>
+      <input type="text" id="prodname" #prodname>
+      <label for="catprod">Product Category</label>
+      <select #select id="catprod">
+        <option *ngFor="let op of catList">{{op.name}}</option>
+      </select>
+      <label for="prodprice">Product Price</label>
+      <input type="text" id="prodprice" #prodprice>
+      <label for="prodquantity">Product Quantity</label>
+      <input type="text" id="prodquantity" #prodquant>
+      <button (click)="addProduct(prodname, prodprice, select, prodquant)">ADD PRODUCT</button>
+    </div>
+    <table>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>category
+          <select (change)="filter(selectcat)" #selectcat>
+            <option>ALL</option>
+            <option *ngFor="let opt of catList">{{opt.name}}</option>
+          </select>
+        </th>
+        <th>price</th>
+        <th>quantity</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let p of productListFiltered" [hidden]="p.stockQuantity === 0">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.cat.name}}</td>
+        <td>{{p.price}} €</td>
+        <td>{{p.stockQuantity}}</td>
+        <td>
+          <button (click)="buy(p)">BUY</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div style="width: 50%; border: 2px solid darkgoldenrod;padding: 5px;">
+    <h3>Basket : {{totalBasket | number : '1.2-2'}} €</h3>
+    <p *ngIf="basketList.length == 0">Empty list</p>
+    <table *ngIf="basketList.length > 0">
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>category</th>
+        <th>price</th>
+        <th>quantity</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let p of basketList">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.cat.name}}</td>
+        <td>{{p.price}} €</td>
+        <td>{{p.stockQuantity}}</td>
+        <td>
+          <button (click)="removeProd(p);">X</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
