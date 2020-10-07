@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-formulaire',
@@ -28,10 +28,18 @@ export class FormulaireComponent implements OnInit {
       genre: Genre.M
     };
     this.reactForm = this.builder.group({
-      name: ['', [Validators.required]],
+      name: ['', [
+        Validators.required,
+        Validators.pattern(/^([^0-9]*)$/),
+        Validators.minLength(2),
+        Validators.maxLength(20)
+      ]
+      ],
       email: ['', [Validators.required, Validators.email]],
-      genre: [Genre.F]
-    });
+      genre: [Genre.F, noEmptyValueFromSelectValidator()],
+      pwd: [''],
+      confirm: ['']
+    }, {validators: [confirmPasswordValidator]});
   }
 
   submit(): void {
@@ -52,3 +60,16 @@ export enum Genre {
   F = 'Female',
   X = 'Noop'
 }
+
+export function noEmptyValueFromSelectValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    return control.value === '' ? {noEmptyValue: {value: 'empty string'}} : null;
+  };
+}
+
+export const confirmPasswordValidator: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+  const pwd = group.get('pwd').value;
+  const confirm = group.get('confirm').value;
+  return pwd === confirm ? null : {pwdConfirm: true};
+};
+

@@ -29,15 +29,39 @@
       <label for="nameR"> Name :
 <!--        TODO : pour lier chaque input au control du formulaire, utilisation de la directive formControlName-->
         <input type="text" id="nameR" formControlName="name">
+<!--        {{reactForm.get('name').errors | json}}-->
+        <div class="val-error" *ngIf="reactForm.get('name').invalid && (reactForm.get('name').touched || reactForm.get('name').dirty)">
+          <p *ngIf="reactForm.get('name').hasError('required')">The name is required !</p>
+          <p *ngIf="reactForm.get('name').hasError('pattern')">The name doesn't contain any digit !</p>
+          <p *ngIf="reactForm.get('name').hasError('minlength')">The name must have at least 3 characters !</p>
+          <p *ngIf="reactForm.get('name').hasError('maxlength')">The name must have maximum 20 characters !</p>
+        </div>
       </label>
       <label for="emailR"> Email :
         <input type="email" id="emailR" formControlName="email">
+        <div class="val-error" *ngIf="reactForm.invalid && (reactForm.get('email').touched || reactForm.get('email').dirty)">
+          <p *ngIf="reactForm.get('email').hasError('required')">The email is required !</p>
+          <p *ngIf="reactForm.get('email').hasError('email')">The email is invalid !</p>
+        </div>
       </label>
       <label for="genreR"> Genre :
         <select id="genreR" formControlName="genre">
+          <option [value]="''"></option>
           <option *ngFor="let g of getEnumValues()" [value]="g">{{g}}</option>
         </select>
+        <div class="val-error" *ngIf="reactForm.invalid && (reactForm.get('genre').touched || reactForm.get('genre').dirty)">
+          <p *ngIf="reactForm.get('genre').hasError('noEmptyValue')">The genre must not be empty!</p>
+        </div>
       </label>
+      <label for="pwd"> Pwd :
+        <input type="password" id="pwd" formControlName="pwd">
+      </label>
+      <label for="confirm"> Confirm :
+        <input type="password" id="confirm" formControlName="confirm">
+      </label>
+      <div class="val-error" *ngIf="reactForm.invalid">
+        <p *ngIf="reactForm.hasError('pwdConfirm')">The pwd doesn't match with confirm !</p>
+      </div>
       <button type="submit" [disabled]="!reactForm.valid">SOUMETTRE</button>
     </form>
     {{reactForm.value | json}}
