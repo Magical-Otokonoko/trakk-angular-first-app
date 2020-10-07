@@ -5,4 +5,12 @@ label {
   padding-top: 0.3em;
 }
 
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.7em;
+}
+
 /*# sourceMappingURL=formulaire.component.css.map */
