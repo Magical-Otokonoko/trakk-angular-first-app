@@ -13,4 +13,9 @@ label {
   padding: 0.7em;
 }
 
+.val-error {
+  color: darkred;
+  font-weight: 600;
+}
+
 /*# sourceMappingURL=formulaire.component.css.map */

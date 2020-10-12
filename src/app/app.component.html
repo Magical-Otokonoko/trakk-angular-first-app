@@ -1,15 +1,21 @@
-<h1>Formation Angular Trakk 2020</h1>
+<header>
+  <h1>Formation Angular Trakk 2020</h1>
+</header>
+<nav>
+  <ul>
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/hello">Hello World</a></li>
+    <li><a routerLink="/stock">Stock</a></li>
+    <li><a routerLink="/storage">LocalStorage</a></li>
+    <li><a routerLink="/shopping">Shopping List</a></li>
+    <li><a routerLink="/communication">Communication</a></li>
+    <li><a routerLink="/formulaire">Forms</a></li>
+    <li><a routerLink="/observable">Observables</a></li>
+    <li><a routerLink="/webapi">Web Api HTTP</a></li>
+    <li><a routerLink="/golf">Golf</a></li>
+  </ul>
+</nav>
 <div class="container">
-  <nav>
-    <ul>
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/hello">Hello World</a></li>
-      <li><a routerLink="/stock">Stock</a></li>
-      <li><a routerLink="/storage">Démo LocalStorage</a></li>
-      <li><a routerLink="/shopping">Shopping List</a></li>
-      <li><a routerLink="/communication">Communication</a></li>
-      <li><a routerLink="/formulaire">Forms</a></li>
-    </ul>
-  </nav>
+  <app-login></app-login>
   <router-outlet></router-outlet>
 </div>

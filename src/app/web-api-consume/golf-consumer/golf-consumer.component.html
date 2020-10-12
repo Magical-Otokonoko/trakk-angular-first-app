@@ -1,0 +1,12 @@
+<div class="container" *ngIf="parcours.length>0">
+  <div class="row">
+    <div class="col s4" *ngFor="let parcour of parcours">
+      {{parcour.id}}
+      <ul>
+        <li *ngFor="let trou of parcour.trous">
+          <div class="col s1">{{trou.id}}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

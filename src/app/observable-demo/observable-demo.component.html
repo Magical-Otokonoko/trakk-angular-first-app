@@ -1,0 +1,25 @@
+<h3>Démo Observable</h3>
+<p>Mon timer vaut : {{timer | async}}</p>
+<p>Ma variable vaut {{myObs | async}}</p>
+<p>La somme des nombres pairs du tableau vaut : {{myObsTab | async}} ou {{value}}</p>
+<p>Inscription manuelle : {{manualSuscription}}</p>
+<!--<p>Interval : {{myObsInterval | async}}</p>-->
+<ul>
+  <li *ngFor="let bike of bikes$ | async" [style.color]="bike.color">
+    {{bike.name}} [{{bike.brand}}]
+  </li>
+</ul>
+<div>
+  <h5>Recherche par ID</h5>
+  <label for="search">
+    <input type="search" id="search" (keyup)="find(input.value)" #input>
+  </label>
+  <div *ngIf="bikeTOFind">
+<!--    {{bikeTOFind | json}}-->
+    <p [style.color]="bikeTOFind.color">{{bikeTOFind.brand}} {{bikeTOFind.name}}</p>
+  </div>
+  <div >
+    <!--    {{bikeTOFind | json}}-->
+    <p [style.color]="bikeTOFind?.color ? bikeTOFind.color : '#ddd'">{{bikeTOFind?.brand}} {{bikeTOFind?.name}}</p>
+  </div>
+</div>
